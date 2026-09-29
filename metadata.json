@@ -1,0 +1,6 @@
+{
+  "name": "Eklavya - MoTA Tribal Scholarship & Welfare Ecosystem",
+  "description": "Unified civic mobile ecosystem for Scheduled Tribe (ST) students under the Ministry of Tribal Affairs (MoTA), featuring the Jago Bot multilingual AI assistant, 5-scheme DBT tracker, and DigiLocker vault.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
