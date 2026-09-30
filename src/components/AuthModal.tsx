@@ -276,20 +276,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/65 backdrop-blur-xs animate-in fade-in select-none">
-      <div className="bg-[#FAF7F2] w-full max-w-md max-h-[92vh] overflow-y-auto border-2 border-[#235E4B] shadow-2xl flex flex-col text-stone-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3.5 bg-black/55 backdrop-blur-xs animate-in fade-in select-none">
+      <div className="bg-[#FAF8F5] w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col text-stone-900 border border-stone-200">
         
         {/* Header Strip */}
-        <div className="bg-[#235E4B] text-white px-4 py-3 flex items-center justify-between border-b-2 border-[#EA580C] shrink-0">
-          <div className="flex items-center space-x-2">
-            <div className="w-7 h-7 bg-[#EA580C] flex items-center justify-center text-white font-bold text-xs shadow">
+        <div className="bg-[#1E4D3C] text-white px-5 py-4 flex items-center justify-between rounded-t-2xl shrink-0">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-8 h-8 rounded-lg bg-[#C25927] flex items-center justify-center text-white font-bold text-sm shadow-xs">
               🏹
             </div>
             <div>
-              <h3 className="font-extrabold text-sm tracking-wide text-amber-100 font-serif leading-none">
+              <h3 className="font-bold text-sm tracking-wide text-amber-50 font-serif leading-none">
                 EKLAVYA SCHOLAR ACCESS
               </h3>
-              <p className="text-[10px] text-emerald-200/90 leading-tight mt-0.5">
+              <p className="text-[11px] text-emerald-100/80 leading-tight mt-1">
                 Indigenous Scholarship & Welfare Account
               </p>
             </div>
@@ -297,23 +297,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
           <button
             onClick={onClose}
-            className="w-7 h-7 bg-[#1A4739] hover:bg-[#15382D] text-amber-200 flex items-center justify-center font-bold text-sm"
+            className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Warli Decorative Border Accent */}
-        <WarliPattern variant="border" color="#F59E0B" className="opacity-90 shrink-0" />
-
         {/* Tab Toggle: Sign In vs Sign Up */}
-        <div className="flex border-b-2 border-stone-300 bg-stone-100 shrink-0">
+        <div className="flex border-b border-stone-200 bg-stone-100/70 p-1 shrink-0">
           <button
             type="button"
             onClick={() => { setAuthMode('signup'); setErrorMessage(null); }}
-            className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider text-center transition-all ${
+            className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
               authMode === 'signup'
-                ? 'bg-[#FAF7F2] text-[#235E4B] border-b-2 border-[#EA580C] font-extrabold shadow-xs'
+                ? 'bg-white text-[#1E4D3C] shadow-xs'
                 : 'text-stone-500 hover:text-stone-800'
             }`}
           >
@@ -323,9 +320,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <button
             type="button"
             onClick={() => { setAuthMode('signin'); setErrorMessage(null); }}
-            className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider text-center transition-all ${
+            className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
               authMode === 'signin'
-                ? 'bg-[#FAF7F2] text-[#235E4B] border-b-2 border-[#EA580C] font-extrabold shadow-xs'
+                ? 'bg-white text-[#1E4D3C] shadow-xs'
                 : 'text-stone-500 hover:text-stone-800'
             }`}
           >
@@ -334,54 +331,54 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </div>
 
         {/* Form Body */}
-        <div className="p-4 space-y-3.5">
+        <div className="p-5 space-y-4">
           {errorMessage && (
-            <div className="p-2 bg-rose-50 border border-rose-300 text-rose-800 text-xs font-medium">
+            <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-medium">
               ⚠️ {errorMessage}
             </div>
           )}
 
           {/* Quick Demo 1-Tap Scholars */}
-          <div className="p-2.5 bg-amber-50/80 border border-amber-300 space-y-1.5">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-[#C2410C] block">
+          <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200 space-y-2">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-[#C25927] block">
               ⚡ 1-Tap Quick Demo Scholars:
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-left">
               <button
                 type="button"
                 onClick={() => handleQuickDemo('Birsa Marandi', 'Santhal', 'Jharkhand', 'Dumka', 'Undergraduate (B.Tech, 3rd Yr)', 185000)}
-                className="p-1.5 bg-white hover:bg-amber-100/60 border border-stone-300 text-left text-[11px] transition-colors"
+                className="p-2 rounded-lg bg-white hover:bg-amber-100/50 border border-stone-200 text-left text-[11px] transition-colors shadow-2xs"
               >
-                <span className="font-bold text-[#235E4B] block leading-tight">Birsa Marandi</span>
-                <span className="text-[9px] text-stone-500 block">Santhal • Jharkhand (B.Tech)</span>
+                <span className="font-semibold text-[#1E4D3C] block leading-tight">Birsa Marandi</span>
+                <span className="text-[9px] text-stone-500 block mt-0.5">Santhal • Jharkhand (B.Tech)</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleQuickDemo('Sunita Gond', 'Gond', 'Madhya Pradesh', 'Mandla', 'Postgraduate (M.Sc Botany)', 120000)}
-                className="p-1.5 bg-white hover:bg-amber-100/60 border border-stone-300 text-left text-[11px] transition-colors"
+                className="p-2 rounded-lg bg-white hover:bg-amber-100/50 border border-stone-200 text-left text-[11px] transition-colors shadow-2xs"
               >
-                <span className="font-bold text-[#235E4B] block leading-tight">Sunita Gond</span>
-                <span className="text-[9px] text-stone-500 block">Gond • MP (M.Sc)</span>
+                <span className="font-semibold text-[#1E4D3C] block leading-tight">Sunita Gond</span>
+                <span className="text-[9px] text-stone-500 block mt-0.5">Gond • MP (M.Sc)</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleQuickDemo('Wanphrang Syiem', 'Khasi', 'Meghalaya', 'East Khasi Hills', 'Class 9 & 10 (Secondary Pre-Matric)', 85000)}
-                className="p-1.5 bg-white hover:bg-amber-100/60 border border-stone-300 text-left text-[11px] transition-colors"
+                className="p-2 rounded-lg bg-white hover:bg-amber-100/50 border border-stone-200 text-left text-[11px] transition-colors shadow-2xs"
               >
-                <span className="font-bold text-[#235E4B] block leading-tight">Wanphrang Syiem</span>
-                <span className="text-[9px] text-stone-500 block">Khasi • Meghalaya (Class 10)</span>
+                <span className="font-semibold text-[#1E4D3C] block leading-tight">Wanphrang Syiem</span>
+                <span className="text-[9px] text-stone-500 block mt-0.5">Khasi • Meghalaya (Class 10)</span>
               </button>
             </div>
           </div>
 
           {authMode === 'signup' ? (
             /* SIGN UP FORM */
-            <form onSubmit={handleSignUpSubmit} className="space-y-3">
+            <form onSubmit={handleSignUpSubmit} className="space-y-3.5">
               {/* Full Name */}
               <div>
-                <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                   Scholar Full Name *
                 </label>
                 <input
@@ -390,20 +387,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Birsa Marandi / Sunita Gond"
-                  className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 font-medium px-3 py-2 outline-none"
+                  className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] focus:ring-2 focus:ring-[#1E4D3C]/10 text-xs text-stone-900 font-medium px-3.5 py-2.5 outline-none transition-all"
                 />
               </div>
 
               {/* Tribal Community & State Selection */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                  <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                     Tribal Community *
                   </label>
                   <select
                     value={community}
                     onChange={(e) => setCommunity(e.target.value)}
-                    className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 font-medium px-2 py-2 outline-none cursor-pointer"
+                    className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 font-medium px-3 py-2.5 outline-none cursor-pointer"
                   >
                     {TRIBAL_COMMUNITIES.map((c) => (
                       <option key={c} value={c}>{c}</option>
@@ -412,7 +409,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                  <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                     State & District *
                   </label>
                   <select
@@ -421,7 +418,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                       const loc = STATES_LIST.find(s => s.state === e.target.value);
                       if (loc) setSelectedLocation(loc);
                     }}
-                    className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 font-medium px-2 py-2 outline-none cursor-pointer"
+                    className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 font-medium px-3 py-2.5 outline-none cursor-pointer"
                   >
                     {STATES_LIST.map((loc) => (
                       <option key={loc.state} value={loc.state}>
@@ -434,7 +431,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
               {community === 'Other Tribal Community' && (
                 <div>
-                  <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                  <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                     Specify Your Tribal Group
                   </label>
                   <input
@@ -442,20 +439,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     value={customCommunity}
                     onChange={(e) => setCustomCommunity(e.target.value)}
                     placeholder="Enter tribe name"
-                    className="w-full bg-white border border-stone-400 text-xs px-3 py-1.5 outline-none"
+                    className="w-full bg-white rounded-xl border border-stone-300 text-xs px-3.5 py-2 outline-none"
                   />
                 </div>
               )}
 
               {/* Education Level */}
               <div>
-                <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                   Current Course / Education Level *
                 </label>
                 <select
                   value={educationLevel}
                   onChange={(e) => setEducationLevel(e.target.value)}
-                  className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 font-medium px-2 py-2 outline-none cursor-pointer"
+                  className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 font-medium px-3 py-2.5 outline-none cursor-pointer"
                 >
                   {EDUCATION_LEVELS.map((lvl) => (
                     <option key={lvl} value={lvl}>{lvl}</option>
@@ -465,7 +462,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
               {/* Institution / College Name (Optional) */}
               <div>
-                <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                   School / College / University Name
                 </label>
                 <input
@@ -473,14 +470,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={institution}
                   onChange={(e) => setInstitution(e.target.value)}
                   placeholder="e.g. National Institute of Technology / Govt High School"
-                  className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 px-3 py-2 outline-none"
+                  className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 px-3.5 py-2.5 outline-none"
                 />
               </div>
 
               {/* Family Income & PIN */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                  <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                     Annual Income (₹)
                   </label>
                   <input
@@ -490,12 +487,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     step="5000"
                     value={annualIncome}
                     onChange={(e) => setAnnualIncome(Number(e.target.value))}
-                    className="w-full bg-white border border-stone-400 text-xs font-mono px-3 py-2 outline-none"
+                    className="w-full bg-white rounded-xl border border-stone-300 text-xs font-mono px-3.5 py-2.5 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                  <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                     Security PIN (6 Digits)
                   </label>
                   <input
@@ -503,13 +500,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     maxLength={6}
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
-                    className="w-full bg-white border border-stone-400 text-xs font-mono px-3 py-2 outline-none tracking-widest text-center"
+                    className="w-full bg-white rounded-xl border border-stone-300 text-xs font-mono px-3.5 py-2.5 outline-none tracking-widest text-center"
                   />
                 </div>
               </div>
 
-              {/* DigiLocker & Aadhaar Pre-Verification Notice */}
-              <div className="p-2.5 bg-emerald-50 border border-emerald-300 text-[10px] text-emerald-950 flex items-center space-x-2">
+              {/* DigiLocker & Aadhaar Notice */}
+              <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 flex items-center space-x-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
                 <span>
                   Aadhaar NPCI bank link and DigiLocker caste certificate sync will be activated automatically for direct DBT disbursal.
@@ -519,7 +516,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               {/* Submit Sign Up Button */}
               <button
                 type="submit"
-                className="w-full py-2.5 px-4 bg-[#EA580C] hover:bg-[#C2410C] text-white font-extrabold text-xs tracking-wider uppercase transition-all shadow flex items-center justify-center space-x-2 border border-amber-300/40 active:scale-98"
+                className="w-full py-3 px-4 rounded-xl bg-[#C25927] hover:bg-[#A94A1E] text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-sm flex items-center justify-center space-x-2 active:scale-98"
               >
                 <span>Create My Scholar Profile</span>
                 <ArrowRight className="w-4 h-4 text-white" />
@@ -527,9 +524,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </form>
           ) : (
             /* SIGN IN FORM */
-            <form onSubmit={handleSignInSubmit} className="space-y-3">
+            <form onSubmit={handleSignInSubmit} className="space-y-3.5">
               <div>
-                <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                   Scholar ID or Registered Mobile
                 </label>
                 <input
@@ -538,12 +535,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={signInId}
                   onChange={(e) => setSignInId(e.target.value)}
                   placeholder="e.g. ST-JH-2026-98124 or 9876543210"
-                  className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs text-stone-900 font-medium px-3 py-2 outline-none"
+                  className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 font-medium px-3.5 py-2.5 outline-none"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wide block mb-0.5">
+                <label className="text-[11px] font-semibold text-stone-700 block mb-1">
                   Security PIN / Password
                 </label>
                 <input
@@ -553,16 +550,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={signInPin}
                   onChange={(e) => setSignInPin(e.target.value)}
                   placeholder="••••••"
-                  className="w-full bg-white border border-stone-400 focus:border-[#235E4B] text-xs font-mono px-3 py-2 outline-none tracking-widest"
+                  className="w-full bg-white rounded-xl border border-stone-300 focus:border-[#1E4D3C] text-xs font-mono px-3.5 py-2.5 outline-none tracking-widest"
                 />
               </div>
 
-              <div className="p-2.5 bg-stone-100 border border-stone-300 text-[10px] text-stone-600 flex items-center justify-between">
-                <span>Default Test PIN: <code className="font-bold text-[#235E4B]">123456</code></span>
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 text-[11px] text-stone-600 flex items-center justify-between">
+                <span>Default Test PIN: <code className="font-bold text-[#1E4D3C]">123456</code></span>
                 <button
                   type="button"
                   onClick={() => { setSignInId(currentProfile.id); setSignInPin('123456'); }}
-                  className="text-[#EA580C] font-bold hover:underline"
+                  className="text-[#C25927] font-semibold hover:underline"
                 >
                   Use Current Scholar ID
                 </button>
@@ -570,7 +567,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
               <button
                 type="submit"
-                className="w-full py-2.5 px-4 bg-[#235E4B] hover:bg-[#1A4739] text-white font-extrabold text-xs tracking-wider uppercase transition-all shadow flex items-center justify-center space-x-2 border border-emerald-400/40 active:scale-98"
+                className="w-full py-3 px-4 rounded-xl bg-[#1E4D3C] hover:bg-[#163D2F] text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-sm flex items-center justify-center space-x-2 active:scale-98"
               >
                 <span>Sign In to Scholar Portal</span>
                 <ArrowRight className="w-4 h-4 text-white" />

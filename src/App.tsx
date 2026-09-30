@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SUPPORTED_LANGUAGES, LanguageOption, StudentMockProfile, DEMO_STUDENT } from './data/motaKnowledge.ts';
 import { getTranslation } from './data/translations.ts';
 import { Header } from './components/Header.tsx';
@@ -14,9 +14,18 @@ import { ProfileModal } from './components/ProfileModal.tsx';
 import { ArrowLeft } from 'lucide-react';
 
 export default function App() {
-  const [showIntroSplash, setShowIntroSplash] = useState(true);
+  // Check if user has an existing saved profile in localStorage
+  const savedProfileString = typeof window !== 'undefined' ? localStorage.getItem('eklavya_scholar_profile') : null;
+  const isNewVisitor = !savedProfileString;
+
+  // New visitors immediately see the centered Sign Up / Login modal
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(isNewVisitor);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [showIntroSplash, setShowIntroSplash] = useState(false);
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
-  const [currentLanguage, setCurrentLanguage] = useState<LanguageOption>(SUPPORTED_LANGUAGES[1]); // Default to Hindi (हिन्दी)
+
+  // Primary initial language is English (SUPPORTED_LANGUAGES[0])
+  const [currentLanguage, setCurrentLanguage] = useState<LanguageOption>(SUPPORTED_LANGUAGES[0]);
   const [highContrast, setHighContrast] = useState(false);
   const [fontScale, setFontScale] = useState<'normal' | 'large' | 'xlarge'>('normal');
   const [chatInitialQuery, setChatInitialQuery] = useState<string | undefined>(undefined);
@@ -24,16 +33,12 @@ export default function App() {
   // Authenticated Scholar Profile State with Local Storage persistence
   const [userProfile, setUserProfile] = useState<StudentMockProfile>(() => {
     try {
-      const saved = localStorage.getItem('eklavya_scholar_profile');
-      if (saved) return JSON.parse(saved);
+      if (savedProfileString) return JSON.parse(savedProfileString);
     } catch (e) {
       // fallback
     }
     return DEMO_STUDENT;
   });
-
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   const t = getTranslation(currentLanguage.code);
 
@@ -84,9 +89,9 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#1D4F40] flex justify-center items-center py-0 sm:py-3 transition-colors ${getFontScaleClass()}`}>
+    <div className={`min-h-screen bg-[#18392E] flex justify-center items-center py-0 sm:py-4 transition-colors ${getFontScaleClass()}`}>
       
-      {/* 5-Second Tribal Art Intro / Welcome Splash Slider */}
+      {/* Tribal Art Stories Modal (triggered on demand via header or dashboard) */}
       {showIntroSplash && (
         <TribalIntroSplash
           currentLanguage={currentLanguage}
@@ -94,13 +99,13 @@ export default function App() {
         />
       )}
 
-      {/* APK Mobile Device Container */}
+      {/* Mobile Device Viewport Container - Soft & Professional */}
       <div 
-        className={`w-full max-w-[430px] min-h-screen sm:min-h-[860px] sm:max-h-[920px] bg-[#FAF7F2] text-stone-900 flex flex-col shadow-[0_25px_60px_rgba(0,0,0,0.5)] border-x-0 sm:border-x-4 border-[#143B2E] overflow-hidden relative ${
+        className={`w-full max-w-[430px] min-h-screen sm:min-h-[860px] sm:max-h-[920px] bg-[#FAF8F5] text-stone-900 flex flex-col shadow-2xl rounded-none sm:rounded-3xl border-0 sm:border border-stone-300/60 overflow-hidden relative ${
           highContrast ? 'contrast-125' : ''
         }`}
       >
-        {/* Top Header Bar */}
+        {/* Top Header Bar with Working Language Selector */}
         <Header
           currentLanguage={currentLanguage}
           onLanguageChange={(lang) => setCurrentLanguage(lang)}
@@ -116,23 +121,23 @@ export default function App() {
           onOpenAuth={() => setIsAuthModalOpen(true)}
         />
 
-        {/* Main APK Scrollable Content Viewport */}
-        <main className="flex-1 overflow-y-auto px-3 py-2.5 pb-20 relative bg-[#FAF7F2]">
+        {/* Main Scrollable Content Viewport */}
+        <main className="flex-1 overflow-y-auto px-3.5 py-3 pb-24 relative bg-[#FAF8F5]">
           
           {/* Subpage Breadcrumb Navigation when navigated away from Dashboard */}
           {activeTab !== 'dashboard' && (
-            <div className="mb-2.5 flex items-center justify-between animate-in fade-in">
+            <div className="mb-3 flex items-center justify-between animate-in fade-in">
               <button
                 onClick={handleGoBackToDashboard}
-                className="inline-flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-stone-100 text-[#235E4B] font-bold text-xs border border-stone-300 shadow-xs transition-all active:scale-95"
+                className="inline-flex items-center space-x-1 px-3 py-1.5 bg-white hover:bg-stone-50 text-[#1E4D3C] font-semibold text-xs rounded-lg border border-stone-200 shadow-2xs transition-all active:scale-95"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-[#EA580C]" />
+                <ArrowLeft className="w-3.5 h-3.5 text-[#C25927]" />
                 <span>{t.backToHome}</span>
               </button>
-              <div className="flex items-center space-x-1 text-[11px] text-stone-500 font-medium">
+              <div className="flex items-center space-x-1.5 text-[11px] text-stone-500 font-medium">
                 <span className="cursor-pointer hover:underline" onClick={handleGoBackToDashboard}>{t.home}</span>
                 <span>/</span>
-                <span className="font-bold text-[#235E4B]">{getTabTitle(activeTab)}</span>
+                <span className="font-semibold text-[#1E4D3C]">{getTabTitle(activeTab)}</span>
               </div>
             </div>
           )}
@@ -190,7 +195,7 @@ export default function App() {
           )}
         </main>
 
-        {/* Persistent APK Bottom Navigation Bar */}
+        {/* Persistent Bottom Navigation Bar */}
         <BottomNav
           activeTab={activeTab}
           onTabChange={(tab) => {
@@ -202,7 +207,7 @@ export default function App() {
         />
       </div>
 
-      {/* Login & Sign Up Modal */}
+      {/* Login & Sign Up Modal - Appears in the center for new users */}
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}

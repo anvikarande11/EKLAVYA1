@@ -235,33 +235,33 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-175px)] min-h-[540px] max-w-xl mx-auto bg-[#FAF7F2] border-2 border-stone-300 shadow-md overflow-hidden relative mb-20">
+    <div className="flex flex-col h-[calc(100vh-175px)] min-h-[540px] max-w-xl mx-auto bg-[#FAF8F5] rounded-2xl border border-stone-200 shadow-sm overflow-hidden relative mb-20">
       
       {/* Bot Chat Header */}
-      <div className="bg-[#235E4B] text-white px-3 py-2.5 flex items-center justify-between border-b-2 border-[#EA580C] shrink-0">
-        <div className="flex items-center space-x-2">
+      <div className="bg-[#1E4D3C] text-white px-4 py-3 flex items-center justify-between border-b border-white/10 shrink-0">
+        <div className="flex items-center space-x-2.5">
           <button
             onClick={onGoBack}
-            className="p-1 bg-[#EA580C] hover:bg-[#C2410C] text-white transition-all flex items-center"
+            className="p-1 rounded-md bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center"
             title={t.backToHome}
           >
             <ArrowLeft className="w-3.5 h-3.5" />
           </button>
 
-          <div className="w-7 h-7 bg-[#EA580C] flex items-center justify-center text-white font-bold shadow text-xs border border-amber-300/40">
+          <div className="w-7 h-7 rounded-lg bg-[#C25927] flex items-center justify-center text-white font-bold shadow-xs text-xs">
             🏹
           </div>
 
           <div>
             <div className="flex items-center space-x-1.5">
-              <h3 className="font-extrabold text-sm tracking-tight text-amber-100 font-serif leading-none">
+              <h3 className="font-bold text-sm tracking-wide text-amber-50 font-serif leading-none">
                 {t.jagoTitle}
               </h3>
-              <span className="px-1 py-0.2 bg-[#1A4739] text-amber-200 text-[9px] font-mono border border-emerald-600/50">
+              <span className="px-1.5 py-0.5 rounded bg-white/10 text-emerald-100 text-[9px] font-mono border border-white/10">
                 AI GUIDE
               </span>
             </div>
-            <p className="text-[10px] text-emerald-100/90 truncate max-w-[150px] leading-tight">
+            <p className="text-[10px] text-emerald-100/80 truncate max-w-[150px] leading-tight mt-0.5">
               {t.jagoSubtitle}
             </p>
           </div>
@@ -277,10 +277,10 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
                 setSpeakingMessageId(null);
               }
             }}
-            className={`px-2 py-1 flex items-center space-x-1 text-[11px] font-bold transition-all border ${
+            className={`px-2 py-1 rounded-md flex items-center space-x-1 text-[11px] font-medium transition-colors border ${
               autoSpeak
-                ? 'bg-[#EA580C] text-white border-amber-300'
-                : 'bg-[#1A4739] text-emerald-200 border-emerald-700 hover:text-white'
+                ? 'bg-[#C25927] text-white border-amber-300/40'
+                : 'bg-white/10 text-emerald-100 border-white/15 hover:bg-white/20'
             }`}
             title="Auto-read aloud assistant replies"
           >
@@ -295,7 +295,7 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
               if (selected) onLanguageChange(selected);
             }}
             aria-label="Select Assistant Language"
-            className="bg-[#1A4739] text-amber-200 border border-emerald-700 text-[11px] font-bold px-1.5 py-1 focus:outline-none cursor-pointer max-w-[100px] truncate"
+            className="bg-white/10 text-amber-200 border border-white/15 rounded-md text-[11px] font-medium px-2 py-1 focus:outline-none cursor-pointer max-w-[100px] truncate"
           >
             {SUPPORTED_LANGUAGES.map((l) => (
               <option key={l.code} value={l.code} className="bg-stone-900 text-white">
@@ -326,10 +326,10 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
               className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} space-y-1 animate-in fade-in duration-200`}
             >
               <div
-                className={`max-w-[88%] p-3 text-xs leading-relaxed shadow-xs border ${
+                className={`max-w-[88%] p-3.5 text-xs leading-relaxed ${
                   isUser
-                    ? 'bg-[#235E4B] text-white border-[#EA580C]'
-                    : 'bg-white text-stone-900 border-stone-300'
+                    ? 'bg-[#1E4D3C] text-white rounded-2xl rounded-br-xs shadow-xs'
+                    : 'bg-white text-stone-900 rounded-2xl rounded-bl-xs border border-stone-200/80 shadow-xs'
                 }`}
               >
                 {/* Text Content */}
@@ -472,22 +472,22 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
       )}
 
       {/* HIGH-VISIBILITY PINNED INPUT DOCK */}
-      <div className="sticky bottom-0 left-0 right-0 bg-[#FAF7F2] p-2.5 border-t-2 border-[#235E4B] shadow-[0_-6px_15px_rgba(0,0,0,0.08)] z-30 shrink-0">
+      <div className="sticky bottom-0 left-0 right-0 bg-[#FAF8F5]/95 backdrop-blur-md p-3 border-t border-stone-200 z-30 shrink-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex items-center space-x-1.5"
+          className="flex items-center space-x-2"
         >
           {/* Voice Input Button */}
           <button
             type="button"
             onClick={handleVoiceSimulation}
-            className={`p-2.5 border transition-all shrink-0 ${
+            className={`p-2.5 rounded-xl border transition-colors shrink-0 ${
               isRecordingVoice
                 ? 'bg-rose-600 text-white border-rose-700 animate-bounce'
-                : 'bg-white hover:bg-stone-100 text-stone-700 border-stone-300'
+                : 'bg-white hover:bg-stone-50 text-stone-600 border-stone-200'
             }`}
             title="Speak query"
           >
@@ -501,7 +501,7 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder={t.inputPlaceholder}
-              className="w-full bg-white border-2 border-stone-400 focus:border-[#EA580C] text-xs text-stone-900 font-medium px-3 py-2.5 shadow-inner focus:outline-none transition-all placeholder:text-stone-400"
+              className="w-full bg-white border border-stone-300 focus:border-[#1E4D3C] text-xs text-stone-900 font-medium px-3.5 py-2.5 rounded-xl shadow-xs focus:outline-none transition-all placeholder:text-stone-400"
               disabled={isLoading}
             />
             {inputText && (
@@ -519,11 +519,11 @@ export const JagoBotChat: React.FC<JagoBotProps> = ({
           <button
             type="submit"
             disabled={!inputText.trim() || isLoading}
-            className="px-3.5 py-2.5 bg-[#EA580C] hover:bg-[#C2410C] disabled:opacity-40 disabled:cursor-not-allowed text-white font-extrabold shadow transition-all flex items-center justify-center space-x-1 shrink-0 active:scale-95 border border-amber-300/40"
+            className="px-3.5 py-2.5 rounded-xl bg-[#C25927] hover:bg-[#A94A1E] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-xs transition-all flex items-center justify-center space-x-1.5 shrink-0 active:scale-95 shadow-xs"
             title="Send Message"
           >
             <Send className="w-3.5 h-3.5" />
-            <span className="text-[11px] font-bold">Send</span>
+            <span className="text-[11px]">Send</span>
           </button>
         </form>
 
